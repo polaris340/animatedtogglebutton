@@ -72,6 +72,7 @@ public abstract class AnimatedToggleButton extends CompoundButton {
             throw new IllegalArgumentException("Progress must in range 0f to 1f");
         }
         this.animationProgress = newProgress;
+        setRotation(90f * animationProgress);
         invalidate();
     }
 
