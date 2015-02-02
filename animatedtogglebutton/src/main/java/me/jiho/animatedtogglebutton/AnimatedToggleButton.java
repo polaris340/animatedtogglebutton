@@ -33,6 +33,7 @@ public abstract class AnimatedToggleButton extends CompoundButton {
     }
 
     private void init() {
+        setClickable(true);
         checkAnimator = ValueAnimator.ofFloat(0f, 1f);
         uncheckAnimator = ValueAnimator.ofFloat(1f, 0f);
 
