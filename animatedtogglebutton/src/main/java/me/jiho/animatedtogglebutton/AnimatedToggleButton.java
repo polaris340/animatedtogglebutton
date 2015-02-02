@@ -1,5 +1,6 @@
 package me.jiho.animatedtogglebutton;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -44,8 +45,27 @@ public abstract class AnimatedToggleButton extends CompoundButton {
             throw new IllegalArgumentException("Progress must in range 0f to 1f");
         }
         this.animationProgress = newProgress;
-        
+        invalidate();
     }
 
 
+    @Override
+    public void setChecked(boolean checked) {
+        super.setChecked(checked);
+        ValueAnimator animator;
+        if (checked) {
+            animator = ValueAnimator.ofFloat(0f, 1f);
+        } else {
+            animator = ValueAnimator.ofFloat(1f, 0f);
+        }
+
+        animator.setDuration(animationDuration);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                setProgress((float) animation.getAnimatedValue());
+            }
+        });
+        animator.start();
+    }
 }
