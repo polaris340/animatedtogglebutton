@@ -38,5 +38,14 @@ public abstract class AnimatedToggleButton extends CompoundButton {
         this.animationDuration = duration;
     }
 
+    public void setProgress(float newProgress) {
+        if (newProgress < 0f || newProgress > 1f) {
+            // Throw exception
+            throw new IllegalArgumentException("Progress must in range 0f to 1f");
+        }
+        this.animationProgress = newProgress;
+        
+    }
+
 
 }
