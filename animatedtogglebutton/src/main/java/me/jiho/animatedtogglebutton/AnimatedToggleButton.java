@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.CompoundButton;
 
 /**
@@ -12,20 +13,44 @@ import android.widget.CompoundButton;
 public abstract class AnimatedToggleButton extends CompoundButton {
     public static final int DEFAULT_ANIMATION_DURATION = 200;
     protected float animationProgress = 0f;
-    protected int animationDuration = DEFAULT_ANIMATION_DURATION;
+
+    private ValueAnimator checkAnimator;
+    private ValueAnimator uncheckAnimator;
 
     public AnimatedToggleButton(Context context) {
         super(context);
+        init();
     }
 
     public AnimatedToggleButton(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public AnimatedToggleButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init();
     }
 
+    private void init() {
+        checkAnimator = ValueAnimator.ofFloat(0f, 1f);
+        uncheckAnimator = ValueAnimator.ofFloat(1f, 0f);
+
+        checkAnimator.setDuration(DEFAULT_ANIMATION_DURATION);
+        checkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                setProgress((float) animation.getAnimatedValue());
+            }
+        });
+        uncheckAnimator.setDuration(DEFAULT_ANIMATION_DURATION);
+        uncheckAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                setProgress((float) animation.getAnimatedValue());
+            }
+        });
+    }
 
     @Override
     final protected void onDraw(Canvas canvas) {
@@ -36,7 +61,8 @@ public abstract class AnimatedToggleButton extends CompoundButton {
     protected abstract void draw(Canvas canvas, float animationProgress);
 
     public void setDuration(int duration) {
-        this.animationDuration = duration;
+        checkAnimator.setDuration(duration);
+        uncheckAnimator.setDuration(duration);
     }
 
     public void setProgress(float newProgress) {
@@ -52,20 +78,11 @@ public abstract class AnimatedToggleButton extends CompoundButton {
     @Override
     public void setChecked(boolean checked) {
         super.setChecked(checked);
-        ValueAnimator animator;
-        if (checked) {
-            animator = ValueAnimator.ofFloat(0f, 1f);
-        } else {
-            animator = ValueAnimator.ofFloat(1f, 0f);
+        try {
+            if (checked) checkAnimator.start();
+            else uncheckAnimator.start();
+        } catch (NullPointerException e) {
+            Log.i("AnimatedToggleButton", "Animator not initialized yet.");
         }
-
-        animator.setDuration(animationDuration);
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                setProgress((float) animation.getAnimatedValue());
-            }
-        });
-        animator.start();
     }
 }
