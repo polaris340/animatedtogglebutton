@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AnimatedToggleButtonExample.iml" filepath="$PROJECT_DIR$/AnimatedToggleButtonExample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/animatedtogglebutton/animatedtogglebutton-animatedtogglebutton.iml" filepath="$PROJECT_DIR$/animatedtogglebutton/animatedtogglebutton-animatedtogglebutton.iml" />
+      <module fileurl="file://$PROJECT_DIR$/animatedtogglebutton/animatedtogglebutton.iml" filepath="$PROJECT_DIR$/animatedtogglebutton/animatedtogglebutton.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
