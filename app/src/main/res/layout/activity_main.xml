@@ -22,10 +22,38 @@
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:layout_width="56dp"
-        android:layout_height="56dp" />
+        android:layout_height="56dp"
+        android:checked="true"
+        />
 
     <me.jiho.animatedtogglebutton.MenuAnimatedToggleButton
         android:id="@+id/btn3"
+        android:padding="16dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp" />
+
+    <me.jiho.animatedtogglebutton.ListGridToggleButton
+        android:id="@+id/btn4"
+        android:padding="16dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        />
+
+    <me.jiho.animatedtogglebutton.ListGridToggleButton
+        android:id="@+id/btn5"
+        android:padding="16dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp" />
+
+    <me.jiho.animatedtogglebutton.ListGridToggleButton
+        android:id="@+id/btn6"
+        android:checked="true"
         android:padding="16dp"
         android:minWidth="0dp"
         android:minHeight="0dp"

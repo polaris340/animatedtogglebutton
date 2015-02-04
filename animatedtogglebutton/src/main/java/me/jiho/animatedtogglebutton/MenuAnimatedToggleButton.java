@@ -34,7 +34,9 @@ public class MenuAnimatedToggleButton extends AnimatedToggleButton {
         init();
     }
 
-    private void init() {
+    @Override
+    protected void init() {
+        super.init();
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setColor(Color.BLACK);
         paint.setStyle(Paint.Style.FILL);
@@ -54,17 +56,7 @@ public class MenuAnimatedToggleButton extends AnimatedToggleButton {
         // smaller square
         int iconSize = (contentWidth < contentHeight? contentWidth : contentHeight);
         int iconLeft = (canvasWidth - iconSize) / 2;
-        int iconRight = (canvasWidth - iconLeft);
         int iconTop = (canvasHeight - iconSize) / 2;
-        int iconBottom = (canvasHeight - iconTop);
-
-        float[] targetPoints = {
-                iconLeft, iconTop,
-                iconRight, iconTop,
-                iconRight, iconBottom,
-                iconLeft, iconBottom,
-                iconLeft, iconTop
-        };
 
         drawRect(canvas, createRectPoints(TOP|LEFT, iconSize, iconLeft, iconTop));
         drawRect(canvas, createRectPoints(TOP|RIGHT, iconSize, iconLeft, iconTop));

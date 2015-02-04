@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
  * Created by user on 2015. 2. 2..
  */
 public abstract class AnimatedToggleButton extends CompoundButton {
+    private static final String TAG = "AnimatedToggleButton";
     public static final int DEFAULT_ANIMATION_DURATION = 200;
 
     protected float animationProgress = 0f;
@@ -35,8 +36,9 @@ public abstract class AnimatedToggleButton extends CompoundButton {
         init();
     }
 
-    private void init() {
+    protected void init() {
         setClickable(true);
+        if (isChecked()) animationProgress = 1f;
         checkAnimator = ValueAnimator.ofFloat(0f, 1f);
         uncheckAnimator = ValueAnimator.ofFloat(1f, 0f);
 
@@ -102,10 +104,11 @@ public abstract class AnimatedToggleButton extends CompoundButton {
                 if (checked) checkAnimator.start();
                 else uncheckAnimator.start();
             } catch (NullPointerException e) {
-                Log.i("AnimatedToggleButton", "Animator may not initialized yet.");
+                Log.i(TAG, "Animator may not initialized yet.");
             }
         }
         super.setChecked(checked);
 
     }
+
 }

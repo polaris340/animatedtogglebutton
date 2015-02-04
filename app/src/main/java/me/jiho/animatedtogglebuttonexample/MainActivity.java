@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import me.jiho.animatedtogglebutton.ListGridToggleButton;
 import me.jiho.animatedtogglebutton.MenuAnimatedToggleButton;
 
 
@@ -28,6 +29,19 @@ public class MainActivity extends ActionBarActivity {
         btn3.setColor(Color.BLUE);
         btn3.setInterpolator(new AccelerateInterpolator(), true);
         btn3.setInterpolator(new DecelerateInterpolator(), false);
+        btn3.setDuration(1000);
+
+
+        ListGridToggleButton btn4 = (ListGridToggleButton) findViewById(R.id.btn4);
+        ListGridToggleButton btn5 = (ListGridToggleButton) findViewById(R.id.btn5);
+        ListGridToggleButton btn6 = (ListGridToggleButton) findViewById(R.id.btn6);
+
+
+        btn5.setColor(Color.RED);
+        btn6.setColor(Color.BLUE);
+        btn6.setInterpolator(new AccelerateInterpolator(2f), true);
+        btn6.setInterpolator(new DecelerateInterpolator(2f), false);
+        btn6.setDuration(1000);
     }
 
 
