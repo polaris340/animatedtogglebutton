@@ -4,13 +4,13 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.Interpolator;
 import android.widget.CompoundButton;
 
 import com.nineoldandroids.animation.ValueAnimator;
+import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by user on 2015. 2. 2..
@@ -90,9 +90,7 @@ public abstract class AnimatedToggleButton extends CompoundButton {
             throw new IllegalArgumentException("Progress must in range 0f to 1f");
         }
         this.animationProgress = newProgress;
-        if (Build.VERSION.SDK_INT >= 11) {
-            setRotation(rotateAngle * animationProgress);
-        }
+        ViewHelper.setRotation(this, rotateAngle * animationProgress);
         invalidate();
     }
 
