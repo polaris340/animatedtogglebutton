@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import me.jiho.animatedtogglebutton.ExpandToggleButton;
 import me.jiho.animatedtogglebutton.ListGridToggleButton;
 import me.jiho.animatedtogglebutton.MenuAnimatedToggleButton;
 
@@ -42,6 +43,17 @@ public class MainActivity extends ActionBarActivity {
         btn6.setInterpolator(new AccelerateInterpolator(2f), true);
         btn6.setInterpolator(new DecelerateInterpolator(2f), false);
         btn6.setDuration(1000);
+
+        ExpandToggleButton btn7 = (ExpandToggleButton) findViewById(R.id.btn7);
+        ExpandToggleButton btn8 = (ExpandToggleButton) findViewById(R.id.btn8);
+        ExpandToggleButton btn9 = (ExpandToggleButton) findViewById(R.id.btn9);
+
+
+        btn8.setColor(Color.RED);
+        btn9.setColor(Color.BLUE);
+        btn9.setInterpolator(new AccelerateInterpolator(2f), true);
+        btn9.setInterpolator(new DecelerateInterpolator(2f), false);
+        btn9.setDuration(1000);
     }
 
 

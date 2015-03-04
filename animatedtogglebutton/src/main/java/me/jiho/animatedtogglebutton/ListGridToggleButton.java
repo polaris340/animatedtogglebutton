@@ -2,7 +2,6 @@ package me.jiho.animatedtogglebutton;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
@@ -11,8 +10,6 @@ import android.util.AttributeSet;
  * Created by user on 2/4/15.
  */
 public class ListGridToggleButton extends AnimatedToggleButton {
-    private Paint paint;
-
     public ListGridToggleButton(Context context) {
         super(context);
     }
@@ -25,20 +22,9 @@ public class ListGridToggleButton extends AnimatedToggleButton {
         super(context, attrs, defStyleAttr);
     }
 
-    @Override
-    protected void init() {
-        super.init();
-        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.FILL);
-    }
-
-    public void setColor(int color) {
-        paint.setColor(color);
-    }
 
     @Override
-    protected void draw(Canvas canvas, float animationProgress) {
+    protected void drawIcon(Canvas canvas) {
         int canvasWidth = canvas.getWidth();
         int canvasHeight = canvas.getHeight();
         int contentWidth = canvasWidth - getPaddingLeft() - getPaddingRight();

@@ -1,12 +1,16 @@
 package me.jiho.animatedtogglebutton;
 
-import android.animation.TimeInterpolator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.animation.Interpolator;
 import android.widget.CompoundButton;
+
+import com.nineoldandroids.animation.ValueAnimator;
 
 /**
  * Created by user on 2015. 2. 2..
@@ -16,6 +20,7 @@ public abstract class AnimatedToggleButton extends CompoundButton {
     public static final int DEFAULT_ANIMATION_DURATION = 200;
 
     protected float animationProgress = 0f;
+    protected Paint paint;
 
     private ValueAnimator checkAnimator;
     private ValueAnimator uncheckAnimator;
@@ -37,6 +42,10 @@ public abstract class AnimatedToggleButton extends CompoundButton {
     }
 
     protected void init() {
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(Color.BLACK);
+        paint.setStyle(Paint.Style.FILL);
+
         setClickable(true);
         if (isChecked()) animationProgress = 1f;
         checkAnimator = ValueAnimator.ofFloat(0f, 1f);
@@ -61,10 +70,14 @@ public abstract class AnimatedToggleButton extends CompoundButton {
     @Override
     final protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        draw(canvas, animationProgress);
+        drawIcon(canvas);
     }
 
-    protected abstract void draw(Canvas canvas, float animationProgress);
+    protected abstract void drawIcon(Canvas canvas);
+
+    public void setColor(int color) {
+        paint.setColor(color);
+    }
 
     public void setDuration(int duration) {
         checkAnimator.setDuration(duration);
@@ -77,7 +90,9 @@ public abstract class AnimatedToggleButton extends CompoundButton {
             throw new IllegalArgumentException("Progress must in range 0f to 1f");
         }
         this.animationProgress = newProgress;
-        setRotation(rotateAngle * animationProgress);
+        if (Build.VERSION.SDK_INT >= 11) {
+            setRotation(rotateAngle * animationProgress);
+        }
         invalidate();
     }
 
@@ -85,11 +100,11 @@ public abstract class AnimatedToggleButton extends CompoundButton {
         this.rotateAngle = newAngle;
     }
 
-    public void setInterpolator(TimeInterpolator interpolator) {
+    public void setInterpolator(Interpolator interpolator) {
         setInterpolator(interpolator, true);
         setInterpolator(interpolator, false);
     }
-    public void setInterpolator(TimeInterpolator interpolator, boolean checked) {
+    public void setInterpolator(Interpolator interpolator, boolean checked) {
         if (checked) {
             checkAnimator.setInterpolator(interpolator);
         } else {

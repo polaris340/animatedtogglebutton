@@ -2,8 +2,6 @@ package me.jiho.animatedtogglebutton;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
 
@@ -17,7 +15,7 @@ public class MenuAnimatedToggleButton extends AnimatedToggleButton {
     private static final int BOTTOM = 0b1000;
 
 
-    private Paint paint;
+
 
     public MenuAnimatedToggleButton(Context context) {
         super(context);
@@ -37,9 +35,7 @@ public class MenuAnimatedToggleButton extends AnimatedToggleButton {
     @Override
     protected void init() {
         super.init();
-        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        paint.setColor(Color.BLACK);
-        paint.setStyle(Paint.Style.FILL);
+
     }
 
     public void setColor(int color) {
@@ -47,7 +43,7 @@ public class MenuAnimatedToggleButton extends AnimatedToggleButton {
     }
 
     @Override
-    protected void draw(Canvas canvas, float animationProgress) {
+    protected void drawIcon(Canvas canvas) {
         int canvasWidth = canvas.getWidth();
         int canvasHeight = canvas.getHeight();
         int contentWidth = canvasWidth - getPaddingLeft() - getPaddingRight();
